@@ -4,31 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Vector;
-//ÀÎº¥Åä¸®, °ñµå ´ã´ç
+//ì¸ë²¤í† ë¦¬, ê³¨ë“œ ë‹´ë‹¹
 
 public class User {
-	private User() {
-	};
+    private User() {
+    }
 
-	private static User user = new User();
+    private static User user = new User();
 
-	public static User getuser() {
-		return user;
-	}
+    public static User getuser() {
+        return user;
+    }
 
-	Scanner scan = new Scanner(System.in);
-	Guild guild = Guild.getguild();
-	
-	int money = 50000;// ±âº»±Ş
-	// ÀÎº¥
-	Vector<Item> Total_Inven = new Vector<>();
+    int money = 50000;// ê¸°ë³¸ê¸‰
+    // ì¸ë²¤
+    Vector<Item> Total_Inven = new Vector<>();
 
-	Map<Item, String> Total_map = new HashMap<Item, String>();// Ä«Å×°í¸® ¸ÅÄ¡
-	Map<Item, String> chara_map = new HashMap<Item, String>();// Ä³¸¯ÅÍ¿Í ¸ÅÄ¡
+    Map<Item, String> Total_map = new HashMap<Item, String>();// ì¹´í…Œê³ ë¦¬ ë§¤ì¹˜
+    Map<Item, String> chara_map = new HashMap<Item, String>();// ìºë¦­í„°ì™€ ë§¤ì¹˜
 
-	void init() {
+    void init() {
 
-	}
+    }
 
 
 }

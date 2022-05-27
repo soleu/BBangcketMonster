@@ -1,17 +1,20 @@
 package RPG_Final.src.RPG_final;
-public class Item{
-String name;//¹°Ç° ÀÌ¸§
-int price;// °¡°İ
-int stat;//´É·Â
-	
-	Item(){}
-	Item(String name,int price,int stat){
-		this.name=name;
-		this.price=price;
-		this.stat=stat;
-	}
 
-	void printItem(){
-		System.out.println("ÀÌ¸§ : "+name+" °¡°İ : "+price+"°ñµå ´É·Â : +"+stat);
-	}
+public class Item {
+    String name;//ë¬¼í’ˆ ì´ë¦„
+    int price;// ê°€ê²©
+    int stat;//ëŠ¥ë ¥
+
+    Item() {
+    }
+
+    Item(String name, int price, int stat) {
+        this.name = name;
+        this.price = price;
+        this.stat = stat;
+    }
+
+    void printItem() {
+        System.out.println("ì´ë¦„ : " + name + " ê°€ê²© : " + price + "ê³¨ë“œ ëŠ¥ë ¥ : +" + stat);
+    }
 }

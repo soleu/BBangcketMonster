@@ -13,8 +13,8 @@ public class GameManager {
 	Map<String, Stage> StageList = new HashMap<String, Stage>();
 	GuildManager guildM=GuildManager.getGuildM();
 
-	String curStageName = "";// ÇöÀç ½ºÅ×ÀÌÁö
-	String nextStageName = "";// ´ÙÀ½ ½ºÅ×ÀÌÁö
+	String curStageName = "";// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	String nextStageName = "";// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	void init() {
 		guildM.guild.initMember();
@@ -31,20 +31,20 @@ public class GameManager {
 		while (run) {
 			if (curStageName.equals(nextStageName)) {
 				run = false;
-			} // º¯È­ ¾øÀ½
+			} // ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½
 			if (nextStageName.equals("")) {
-				System.out.println("½Ã½ºÅÛÀ» Á¾·áÇÕ´Ï´Ù.");
+				System.out.println("ì‹œìŠ¤í…œì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 				run = false;
 				return;
 			}
 
 			curStageName = nextStageName;
-			Stage curStage = StageList.get(curStageName);// ½ºÅ×ÀÌÁö ÀÌµ¿
+			Stage curStage = StageList.get(curStageName);// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 
 			curStage.init();
 			while (true) {
-				if (curStage.update()) {// º¯È­¾øÀ½
-					break;// ´ÙÀ½½ºÅ×ÀÌÁö ÀÌµ¿
+				if (curStage.update()) {// ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½
+					break;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 				}
 			}
 			run = true;

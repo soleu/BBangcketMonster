@@ -1,31 +1,39 @@
-package RPG_Final.src.RPG_final;
-public class SettingStage extends Stage{
-	GuildManager GuildM=GuildManager.getGuildM();
-	Shop shop=Shop.getShop();
-	Shopping shopping=new Shopping();
-	@Override
-	void init() {
-		System.out.println("====[Lobby]====");
-		System.out.println("[1]±ÊµÂ∞¸∏Æ\t[2]ªÛ¡°\t[3]¿Œ∫•\t" );
-		System.out.println("[4]¿˙¿Â     \t[5] ∑ŒµÂ\t[6]µ⁄∑Œ∞°±‚\t");
-	}
 
-	@Override
-	boolean update() {
-		int choice = GameManager.gm.scan.nextInt();
-		if(choice==1) {
-			GuildM.run();
-		}//guild
-		else if(choice==2) {
-			shop.run();
-		}//shop
-		else if(choice==3) {
-			shopping.run();
-		}//user.inven
-		else if(choice==4) {}//file
-		else if(choice==5) {}//file
-		else if(choice==6) {GameManager.gm.nextStageName="LOBBY";}//back
-		return true;
-	}
+
+package RPG_Final.src.RPG_final;
+
+public class SettingStage extends Stage {
+    GuildManager GuildM = GuildManager.getGuildM();
+    Shop shop = Shop.getShop();
+    Shopping shopping = new Shopping();
+
+    @Override
+    void init() {
+        System.out.println("====[Lobby]====");
+        System.out.println("[1]Í∏∏ÎìúÍ¥ÄÎ¶¨\t[2]ÏÉÅÏ†ê\t[3]Ïù∏Î≤§\t");
+        System.out.println("[4]Ï†ÄÏû•     \t[5] Î°úÎìú\t[6]Îí§Î°úÍ∞ÄÍ∏∞\t");
+    }
+
+    @Override
+    boolean update() {
+        int choice = GameManager.gm.scan.nextInt();
+        if (choice == 1) {
+            GuildM.run();
+        }//guild
+        else if (choice == 2) {
+            shop.run();
+        }//shop
+        else if (choice == 3) {
+            shopping.run();
+        }//user.invent
+        else if (choice == 4) {
+        }//file
+        else if (choice == 5) {
+        }//file
+        else if (choice == 6) {
+            GameManager.gm.nextStageName = "LOBBY";
+        }//back
+        return true;
+    }
 
 }

@@ -1,4 +1,5 @@
 package RPG_Final.src.RPG_final;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -6,156 +7,158 @@ import java.util.Scanner;
 import java.util.Vector;
 
 public class Guild {
-	private Guild() {
-	};
+    private Guild() {
+    }
 
-	private static Guild guild = new Guild();
+    ;
 
-	public static Guild getguild() {
-		return guild;
-	}
+    private static Guild guild = new Guild();
 
-	CharacterManager cm = CharacterManager.getcm();
-	Vector<Character> guildMember = new Vector<>();
-	Map<String, Integer> nameno=new HashMap<String, Integer>();
-	Random ran = new Random();
-	Scanner scan = new Scanner(System.in);
+    public static Guild getguild() {
+        return guild;
+    }
 
-	// Ã³À½ ±æµå ¸â¹ö ÃÊ±âÈ­ (¼ø¼­´ë·Î 5¸í)
-	void initMember() {
-		cm.init();
-		for (int i = 0; i < 5; i++) {
-			guildMember.add(cm.allCharacter.get(i));
-			if (i != 4) {
-				guildMember.get(i).setInParty();
-			}
-			nameno.put(guildMember.get(i).name, i);
-		}
-	}
+    CharacterManager cm = CharacterManager.getCm();
+    Vector<Character> guildMember = new Vector<>();
+    Map<String, Integer> nameno = new HashMap<String, Integer>();
+    Random ran = new Random();
+    Scanner scan = new Scanner(System.in);
 
-	// ±æµå ¸ñ·Ï : ÇöÀç ±æµå¿¡ ¼ÓÇØÀÖ´Â ¸â¹ö Ãâ·Â
-	void memberList() {
-		System.out.println("=== [±æµå ¸ñ·Ï] ===");
-		for (int i = 0; i < guildMember.size(); i++) {
-			Character temp = guildMember.get(i);
-			String name = temp.name;
-			int level = temp.level;
-			boolean inparty = temp.inParty;
-			System.out.println("[" + (i + 1) + "] ÀÌ¸§ : " + name + " ·¹º§ : " + level + " ÆÄÆ¼ Áß : " + inparty);
-			System.out.println();
-		}
-	}
+    // ì²˜ìŒ ê¸¸ë“œ ë©¤ë²„ ì´ˆê¸°í™” (ìˆœì„œëŒ€ë¡œ 5ëª…)
+    void initMember() {
+        cm.init();
+        for (int i = 0; i < 5; i++) {
+            guildMember.add(cm.allCharacter.get(i));
+            if (i != 4) {
+                guildMember.get(i).setInParty();
+            }
+            nameno.put(guildMember.get(i).name, i);
+        }
+    }
 
-	// ±æµå¿ø Ãß°¡ : ±âÁ¸ Ä³¸¯ÅÍ ¸Å´ÏÀú¿¡¼­ ·£´ıÀ¸·Î ÇÑ ¸í Ãß°¡(¾ø´Â Ä³¸¯ÅÍ Áß¿¡¼­)
-	void addMember() {
-		System.out.println("=== [±æµå¿ø Ãß°¡] ===");
-		System.out.println("[¾Ë¸²] ±æµå¿ø Ãß°¡´Â 1000°ñµå°¡ ¼Ò¸ğµË´Ï´Ù.");
-		// userMoney>=1000
+    // ê¸¸ë“œ ëª©ë¡ : í˜„ì¬ ê¸¸ë“œì— ì†í•´ìˆëŠ” ë©¤ë²„ ì¶œë ¥
+    void memberList() {
+        System.out.println("=== [ê¸¸ë“œ ëª©ë¡] ===");
+        for (int i = 0; i < guildMember.size(); i++) {
+            Character temp = guildMember.get(i);
+            String name = temp.name;
+            int level = temp.level;
+            boolean inparty = temp.inParty;
+            System.out.println("[" + (i + 1) + "] ì´ë¦„ : " + name + " ë ˆë²¨ : " + level + " íŒŒí‹° ì¤‘ : " + inparty);
+            System.out.println();
+        }
+    }
 
-		boolean run = true;
-		while (run) {
-			int idx = -1;
-			int rNum = ran.nextInt(cm.allCharacter.size());
+    // ê¸¸ë“œì› ì¶”ê°€ : ê¸°ì¡´ ìºë¦­í„° ë§¤ë‹ˆì €ì—ì„œ ëœë¤ìœ¼ë¡œ í•œ ëª… ì¶”ê°€(ì—†ëŠ” ìºë¦­í„° ì¤‘ì—ì„œ)
+    void addMember() {
+        System.out.println("=== [ê¸¸ë“œì› ì¶”ê°€] ===");
+        System.out.println("[ì•Œë¦¼] ê¸¸ë“œì› ì¶”ê°€ëŠ” 1000ê³¨ë“œê°€ ì†Œëª¨ë©ë‹ˆë‹¤.");
+        // userMoney>=1000
 
-			Character temp = new Character();
-			temp = cm.allCharacter.get(rNum);
-			for (int i = 0; i < guildMember.size(); i++) {
-				if (temp.name.equals(guildMember.get(i).name)) {// ±âÁ¸ ±æµå¿ø°ú Áßº¹
-					idx = 0;
-				}
-			}
-			if (idx == -1) {
-				guildMember.add(temp);
-				nameno.put(temp.name, nameno.size());
-				System.out.println("[¾Ë¸²] ±æµå¿øÀÌ Ãß°¡ µÇ¾ú½À´Ï´Ù.");
-				run = false;
-				// userMoney-=1000;
-				// ¼ÒÁö±İ¾×
-			}
-		}
+        boolean run = true;
+        while (run) {
+            int idx = -1;
+            int rNum = ran.nextInt(cm.allCharacter.size());
 
-	}
+            Character temp = new Character();
+            temp = cm.allCharacter.get(rNum);
+            for (int i = 0; i < guildMember.size(); i++) {
+                if (temp.name.equals(guildMember.get(i).name)) {// ê¸°ì¡´ ê¸¸ë“œì›ê³¼ ì¤‘ë³µ
+                    idx = 0;
+                }
+            }
+            if (idx == -1) {
+                guildMember.add(temp);
+                nameno.put(temp.name, nameno.size());
+                System.out.println("[ì•Œë¦¼] ê¸¸ë“œì›ì´ ì¶”ê°€ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+                run = false;
+                // userMoney-=1000;
+                // ì†Œì§€ê¸ˆì•¡
+            }
+        }
 
-	// ±æµå¿ø »èÁ¦ : ÇöÀç ±æµå¿¡¼­ ¼±ÅÃ »èÁ¦(·¹º§´ç °ñµå Áö±Ş)
-	void deleteMember() {
-		System.out.println("=== [±æµå¿ø »èÁ¦] ===");
-		System.out.println("·¹º§ 1 :500°ñµå, ·¹º§ 2 : 700°ñµå, ·¹º§ 3 : 900°ñµå, ·¹º§4 : 1200°ñµå, ·¹º§ 5: 1500°ñµå Áö±Ş");
-		int num = 0;
-		while (true) {
-			memberList();
-			System.out.println("»èÁ¦ÇÒ ±æµå¿øÀ» ¼±ÅÃÇÏ¼¼¿ä : ");
-			num = scan.nextInt();
-			num -= 1;
-			if (guildMember.get(num).inParty == true) {
-				System.out.println("ÆÄÆ¼ÁßÀÎ ¸â¹ö´Â »èÁ¦ÇÒ ¼ö ¾ø½À´Ï´Ù.");
-				continue;
-			}
-			break;
-		}
+    }
 
-		int lev = guildMember.get(num).level;
-		if (lev == 1) {
-			// userMoney+=500;
-		} else if (lev == 2) {
-			// userMoney+=700;
-		} else if (lev == 3) {
-			// userMoney+=900;
-		} else if (lev == 4) {
-			// userMoney+=1200;
-		} else if (lev == 5) {
-			// userMoney+=1500;
-		}
-		guildMember.remove(num);
-		System.out.println("[¾Ë¸²] ÇØ´ç ±æµå¿øÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù.");
-		// ¼ÒÁö±İ¾×
-		// ¼ÒÁö ¾ÆÀÌÅÛ ¸ÕÀú ¹ö¸®±â
-	}
+    // ê¸¸ë“œì› ì‚­ì œ : í˜„ì¬ ê¸¸ë“œì—ì„œ ì„ íƒ ì‚­ì œ(ë ˆë²¨ë‹¹ ê³¨ë“œ ì§€ê¸‰)
+    void deleteMember() {
+        System.out.println("=== [ê¸¸ë“œì› ì‚­ì œ] ===");
+        System.out.println("ë ˆë²¨ 1 :500ê³¨ë“œ, ë ˆë²¨ 2 : 700ê³¨ë“œ, ë ˆë²¨ 3 : 900ê³¨ë“œ, ë ˆë²¨4 : 1200ê³¨ë“œ, ë ˆë²¨ 5: 1500ê³¨ë“œ ì§€ê¸‰");
+        int num = 0;
+        while (true) {
+            memberList();
+            System.out.println("ì‚­ì œí•  ê¸¸ë“œì›ì„ ì„ íƒí•˜ì„¸ìš” : ");
+            num = scan.nextInt();
+            num -= 1;
+            if (guildMember.get(num).inParty == true) {
+                System.out.println("íŒŒí‹°ì¤‘ì¸ ë©¤ë²„ëŠ” ì‚­ì œí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+                continue;
+            }
+            break;
+        }
 
-	// ÆÄÆ¼¿ø ¼±Á¤(ÃÖ´ë 4¸í)
-	void switchMember() {
-		int num1 = 0;
-		int num2 = 0;
-		while (true) {
-			System.out.println("=== [ÆÄÆ¼¿ø ±³Ã¼] ===");
-			memberList();
-			System.out.println("ÈŞ½ÄÀ» ÃëÇÒ Ä³¸¯ÅÍ¸¦ ¼±Á¤ÇØÁÖ¼¼¿ä : ");
-			num1 = scan.nextInt();
-			if (guildMember.get(num1).inParty == false) {
-				System.out.println("ÇØ´ç Ä³¸¯ÅÍ´Â ÆÄÆ¼¿¡ Âü°¡ÁßÀÌÁö ¾Ê½À´Ï´Ù.");
-				continue;
-			}
-			System.out.println("ÆÄÆ¼¿¡ Âü¿©ÇÒ Ä³¸¯ÅÍ¸¦ ¼±Á¤ÇØÁÖ¼¼¿ä : ");
-			num2 = scan.nextInt();
-			if (guildMember.get(num2).inParty == true) {
-				System.out.println("ÇØ´ç Ä³¸¯ÅÍ´Â ÀÌ¹Ì ÆÄÆ¼¿¡ Âü°¡ÁßÀÔ´Ï´Ù.");
-				continue;
-			}
-			break;
-		}
-		Character inChara = guildMember.get(num1);
-		Character outChara = guildMember.get(num2);
-		inChara.printCharaInfo();
-		System.out.println("ÀÌ ³ª°¡°í, ");
-		outChara.printCharaInfo();
-		System.out.println("ÀÌ µé¾î¿Ô½À´Ï´Ù.");
-		guildMember.get(num1).setOutParty();
-		guildMember.get(num2).setInParty();
-	}
+        int lev = guildMember.get(num).level;
+        if (lev == 1) {
+            // userMoney+=500;
+        } else if (lev == 2) {
+            // userMoney+=700;
+        } else if (lev == 3) {
+            // userMoney+=900;
+        } else if (lev == 4) {
+            // userMoney+=1200;
+        } else if (lev == 5) {
+            // userMoney+=1500;
+        }
+        guildMember.remove(num);
+        System.out.println("[ì•Œë¦¼] í•´ë‹¹ ê¸¸ë“œì›ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.");
+        // ì†Œì§€ê¸ˆì•¡
+        // ì†Œì§€ ì•„ì´í…œ ë¨¼ì € ë²„ë¦¬ê¸°
+    }
 
-	// ±æµå¿ø no¼øÀ¸·Î ¿À¸§Â÷¼ø Á¤·Ä
-	void arrayMember() {
-		System.out.println("=== [±æµå¿ø Á¤·Ä] ===");
-		System.out.println("ÁöÁ¤µÈ ¼ø¼­´ë·Î Á¤·ÄÇÕ´Ï´Ù.");
-		for (int i = 0; i < cm.allCharacter.size(); i++) {
-			String name = cm.noname.get(i);
-			for (int j = 0; j < guildMember.size(); j++) {
-				if (name.equals(guildMember.get(j).name)) {
-					Character temp = guildMember.get(i);
-					guildMember.set(i, guildMember.get(j));
-					guildMember.set(j, temp);
-				}
-			}
-		}
-	}
+    // íŒŒí‹°ì› ì„ ì •(ìµœëŒ€ 4ëª…)
+    void switchMember() {
+        int num1 = 0;
+        int num2 = 0;
+        while (true) {
+            System.out.println("=== [íŒŒí‹°ì› êµì²´] ===");
+            memberList();
+            System.out.println("íœ´ì‹ì„ ì·¨í•  ìºë¦­í„°ë¥¼ ì„ ì •í•´ì£¼ì„¸ìš” : ");
+            num1 = scan.nextInt();
+            if (guildMember.get(num1).inParty == false) {
+                System.out.println("í•´ë‹¹ ìºë¦­í„°ëŠ” íŒŒí‹°ì— ì°¸ê°€ì¤‘ì´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+                continue;
+            }
+            System.out.println("íŒŒí‹°ì— ì°¸ì—¬í•  ìºë¦­í„°ë¥¼ ì„ ì •í•´ì£¼ì„¸ìš” : ");
+            num2 = scan.nextInt();
+            if (guildMember.get(num2).inParty == true) {
+                System.out.println("í•´ë‹¹ ìºë¦­í„°ëŠ” ì´ë¯¸ íŒŒí‹°ì— ì°¸ê°€ì¤‘ì…ë‹ˆë‹¤.");
+                continue;
+            }
+            break;
+        }
+        Character inChara = guildMember.get(num1);
+        Character outChara = guildMember.get(num2);
+        inChara.printCharaInfo();
+        System.out.println("ì´ ë‚˜ê°€ê³ , ");
+        outChara.printCharaInfo();
+        System.out.println("ì´ ë“¤ì–´ì™”ìŠµë‹ˆë‹¤.");
+        guildMember.get(num1).setOutParty();
+        guildMember.get(num2).setInParty();
+    }
+
+    // ê¸¸ë“œì› noìˆœìœ¼ë¡œ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
+    void arrayMember() {
+        System.out.println("=== [ê¸¸ë“œì› ì •ë ¬] ===");
+        System.out.println("ì§€ì •ëœ ìˆœì„œëŒ€ë¡œ ì •ë ¬í•©ë‹ˆë‹¤.");
+        for (int i = 0; i < cm.allCharacter.size(); i++) {
+            String name = cm.noname.get(i);
+            for (int j = 0; j < guildMember.size(); j++) {
+                if (name.equals(guildMember.get(j).name)) {
+                    Character temp = guildMember.get(i);
+                    guildMember.set(i, guildMember.get(j));
+                    guildMember.set(j, temp);
+                }
+            }
+        }
+    }
 
 }

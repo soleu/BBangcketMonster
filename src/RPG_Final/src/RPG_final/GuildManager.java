@@ -16,8 +16,8 @@ class GuildManager {
 
 	void run() {
 		while (true) {
-			System.out.println("[1] ���� ���\t [2] ���� �߰�\t[3] ���� ����\t");
-			System.out.println("[4] ��Ƽ�� ��ü\t");
+			System.out.println("[1] 길드원 확인\t [2] 길드원 추가\t[3] 길드원 삭제\t");
+			System.out.println("[4] 뒤로 가기\t");
 			int choice = scan.nextInt();
 			if (choice == 1) {
 				guild.memberList();

@@ -1,132 +1,137 @@
 package RPG_Final.src.RPG_final;
+
 import java.util.Scanner;
 import java.util.Vector;
 
 public class Shop {
-	private Shop() {
-	};
+    private Shop() {
+    }
 
-	private static Shop shop = new Shop();
+    ;
 
-	public static Shop getShop() {
-		return shop;
-	}
+    private static Shop shop = new Shop();
 
-	Scanner scan = new Scanner(System.in);
-	User user = User.getuser();
+    public static Shop getShop() {
+        return shop;
+    }
 
-	Vector<Item> WeaponList = new Vector<>();
-	Vector<Item> ArmorList = new Vector<>();
-	Vector<Item> RingList = new Vector<>();
+    Scanner scan = new Scanner(System.in);
+    User user = User.getuser();
 
-	void init() {
-		String[] names = { "³ª¹« °Ë", "µ¹ °Ë", "°­Ã¶ °Ë", "µ¹ °©¿Ê", "Ã¶ °©¿Ê", "´ÙÀÌ¾Æ °©¿Ê", "³ª¹« ¹İÁö", "±İ ¹İÁö", "¿¡¸Ş¶öµå ¹İÁö" };
-		int[] prices = { 5000, 10000, 20000, 7000, 12000, 30000, 10000, 13000, 50000 };
-		int[] stats = { 10, 15, 30, 15, 20, 50, 10, 20, 40 };
-		for (int i = 0; i < names.length; i++) {
-			if (i < 3) {
-				WeaponList.add(new Item(names[i], prices[i], stats[i]));
-			} else if (i < 6) {
-				ArmorList.add(new Item(names[i], prices[i], stats[i]));
-			} else {
-				RingList.add(new Item(names[i], prices[i], stats[i]));
-			}
-		}
-	}
+    Vector<Item> WeaponList = new Vector<>();
+    Vector<Item> ArmorList = new Vector<>();
+    Vector<Item> RingList = new Vector<>();
 
-	void run() {
-		init();
-		while (true) {
-			System.out.println("=== [SHOP] ===");
-			System.out.println("[1]¹«±â [2]°©¿Ê [3]¹İÁö [4]µÚ·Î°¡±â");
-			int choice = scan.nextInt();
-			if (choice == 1) {
-				weaponMenu();
-			} else if (choice == 2) {
-				armorMenu();
-			} else if (choice == 3) {
-				ringMenu();
-			} else {
-				break;
-			}
-		}
-	}
+    void init() {
+        String[] names = {"ë‚˜ë¬´ ê²€", "ëŒ ê²€", "ê°•ì²  ê²€", "ëŒ ê°‘ì˜·", "ì²  ê°‘ì˜·", "ë‹¤ì´ì•„ ê°‘ì˜·", "ë‚˜ë¬´ ë°˜ì§€", "ê¸ˆ ë°˜ì§€", "ì—ë©”ë„ë“œ ë°˜ì§€"};
+        int[] prices = {5000, 10000, 20000, 7000, 12000, 30000, 10000, 13000, 50000};
+        int[] stats = {10, 15, 30, 15, 20, 50, 10, 20, 40};
+        for (int i = 0; i < names.length; i++) {
+            if (i < 3) {
+                WeaponList.add(new Item(names[i], prices[i], stats[i]));
+            } else if (i < 6) {
+                ArmorList.add(new Item(names[i], prices[i], stats[i]));
+            } else {
+                RingList.add(new Item(names[i], prices[i], stats[i]));
+            }
+        }
+    }
 
-	void weaponMenu() {
-		System.out.println("¹«±â´Â °ø°İ·ÂÀ» ¿µ±¸ Áõ°¡ ½ÃÅµ´Ï´Ù.");
-		for (int i = 0; i < WeaponList.size(); i++) {
-			Item temp = WeaponList.get(i);
-			System.out.println(
-					"[" + (i + 1) + "]" + "ÀÌ¸§ : " + temp.name + ", °¡°İ : " + temp.price + "°ñµå, ´É·Â : +" + temp.stat);
-		}
-		System.out.println("[0] µÚ·Î°¡±â");
-		System.out.println("¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
-		int choice = scan.nextInt();
-		if (choice == 0) {
-			return;
-		}
-		choice--;
-		Item buyTemp = WeaponList.get(choice);
-		if (user.money < buyTemp.price) {
-			System.out.println("¼ÒÁö±İÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
-			return;
-		}
-		user.money -= buyTemp.price;
-		System.out.println("ÇöÀç ¼ÒÁö±İ : " + user.money);
-		user.Total_Inven.add(buyTemp);
-		user.Total_map.put(buyTemp, "Weapon");
-	
-		System.out.println("¾ÆÀÌÅÛÀ» ±¸ÀÔÇß½À´Ï´Ù!");
-	}
+    void run() {
+        init();
+        while (true) {
+            System.out.println("=== [SHOP] ===");
+            System.out.println("[1]ë¬´ê¸° [2]ê°‘ì˜· [3]ë°˜ì§€ [4]ë’¤ë¡œê°€ê¸°");
+            int choice = scan.nextInt();
+            if (choice == 1) {
+                weaponMenu();
+            } else if (choice == 2) {
+                armorMenu();
+            } else if (choice == 3) {
+                ringMenu();
+            } else {
+                break;
+            }
+        }
+    }
 
-	void armorMenu() {
-		System.out.println("°©¿ÊÀº ¹æ¾î·ÂÀ» ¿µ±¸ Áõ°¡ ½ÃÅµ´Ï´Ù.");
-		for (int i = 0; i < ArmorList.size(); i++) {
-			Item temp = ArmorList.get(i);
-			System.out.println(
-					"[" + (i + 1) + "]" + "ÀÌ¸§ : " + temp.name + ", °¡°İ : " + temp.price + "°ñµå, ´É·Â : +" + temp.stat);
-		}
-		System.out.println("[0] µÚ·Î°¡±â");
-		System.out.println("¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
-		int choice = scan.nextInt();
-		if (choice == 0) {return;
-		}
-		choice--;
-		Item buyTemp = ArmorList.get(choice);
-		if (user.money < buyTemp.price) {
-			System.out.println("¼ÒÁö±İÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
-			return;
-		}
-		user.money -= buyTemp.price;
-		System.out.println("ÇöÀç ¼ÒÁö±İ : " + user.money);
-		user.Total_Inven.add(buyTemp);
-		user.Total_map.put(buyTemp, "Armor");
-		System.out.println("¾ÆÀÌÅÛÀ» ±¸ÀÔÇß½À´Ï´Ù!");
-	}
+    void weaponMenu() {
+        System.out.println("ë¬´ê¸°ëŠ” ê³µê²©ë ¥ì„ ì˜êµ¬ ì¦ê°€ ì‹œí‚µë‹ˆë‹¤.");
+        for (int i = 0; i < WeaponList.size(); i++) {
+            Item temp = WeaponList.get(i);
+            System.out.println(
+                    "[" + (i + 1) + "]" + "ì´ë¦„ : " + temp.name + ", ê°€ê²© : " + temp.price + "ê³¨ë“œ, ëŠ¥ë ¥ : +" + temp.stat);
+        }
+        System.out.println("[0] ë’¤ë¡œê°€ê¸°");
+        System.out.println("ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+        int choice = scan.nextInt();
+        if (choice == 0) {
+            return;
+        }
+        choice--;
+        Item buyTemp = WeaponList.get(choice);
+        if (user.money < buyTemp.price) {
+            System.out.println("ì†Œì§€ê¸ˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
+            return;
+        }
+        user.money -= buyTemp.price;
+        System.out.println("í˜„ì¬ ì†Œì§€ê¸ˆ : " + user.money);
+        user.Total_Inven.add(buyTemp);
+        user.Total_map.put(buyTemp, "Weapon");
 
-	void ringMenu() {
-		System.out.println("¹İÁö´Â ÃÖ´ë Ã¼·ÂÀ» ¿µ±¸ Áõ°¡ ½ÃÅµ´Ï´Ù.");
-		for (int i = 0; i < RingList.size(); i++) {
-			Item temp = RingList.get(i);
-			System.out.println(
-					"[" + (i + 1) + "]" + "ÀÌ¸§ : " + temp.name + ", °¡°İ : " + temp.price + "°ñµå, ´É·Â : +" + temp.stat);
-		}
-		System.out.println("[0] µÚ·Î°¡±â");
-		System.out.println("¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
-		int choice = scan.nextInt();
-		if (choice == 0) {return;
-		}
-		choice--;
-		Item buyTemp = RingList.get(choice);
-		if (user.money < buyTemp.price) {
-			System.out.println("¼ÒÁö±İÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
-			return;
-		}
-		user.money -= buyTemp.price;
-		System.out.println("ÇöÀç ¼ÒÁö±İ : " + user.money);
-		user.Total_Inven.add(buyTemp);
-		user.Total_map.put(buyTemp, "Ring");
-		System.out.println("¾ÆÀÌÅÛÀ» ±¸ÀÔÇß½À´Ï´Ù!");
+        System.out.println("ì•„ì´í…œì„ êµ¬ì…í–ˆìŠµë‹ˆë‹¤!");
+    }
 
-	}
+    void armorMenu() {
+        System.out.println("ê°‘ì˜·ì€ ë°©ì–´ë ¥ì„ ì˜êµ¬ ì¦ê°€ ì‹œí‚µë‹ˆë‹¤.");
+        for (int i = 0; i < ArmorList.size(); i++) {
+            Item temp = ArmorList.get(i);
+            System.out.println(
+                    "[" + (i + 1) + "]" + "ì´ë¦„ : " + temp.name + ", ê°€ê²© : " + temp.price + "ê³¨ë“œ, ëŠ¥ë ¥ : +" + temp.stat);
+        }
+        System.out.println("[0] ë’¤ë¡œê°€ê¸°");
+        System.out.println("ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+        int choice = scan.nextInt();
+        if (choice == 0) {
+            return;
+        }
+        choice--;
+        Item buyTemp = ArmorList.get(choice);
+        if (user.money < buyTemp.price) {
+            System.out.println("ì†Œì§€ê¸ˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
+            return;
+        }
+        user.money -= buyTemp.price;
+        System.out.println("í˜„ì¬ ì†Œì§€ê¸ˆ : " + user.money);
+        user.Total_Inven.add(buyTemp);
+        user.Total_map.put(buyTemp, "Armor");
+        System.out.println("ì•„ì´í…œì„ êµ¬ì…í–ˆìŠµë‹ˆë‹¤!");
+    }
+
+    void ringMenu() {
+        System.out.println("ë°˜ì§€ëŠ” ìµœëŒ€ ì²´ë ¥ì„ ì˜êµ¬ ì¦ê°€ ì‹œí‚µë‹ˆë‹¤.");
+        for (int i = 0; i < RingList.size(); i++) {
+            Item temp = RingList.get(i);
+            System.out.println(
+                    "[" + (i + 1) + "]" + "ì´ë¦„ : " + temp.name + ", ê°€ê²© : " + temp.price + "ê³¨ë“œ, ëŠ¥ë ¥ : +" + temp.stat);
+        }
+        System.out.println("[0] ë’¤ë¡œê°€ê¸°");
+        System.out.println("ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+        int choice = scan.nextInt();
+        if (choice == 0) {
+            return;
+        }
+        choice--;
+        Item buyTemp = RingList.get(choice);
+        if (user.money < buyTemp.price) {
+            System.out.println("ì†Œì§€ê¸ˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
+            return;
+        }
+        user.money -= buyTemp.price;
+        System.out.println("í˜„ì¬ ì†Œì§€ê¸ˆ : " + user.money);
+        user.Total_Inven.add(buyTemp);
+        user.Total_map.put(buyTemp, "Ring");
+        System.out.println("ì•„ì´í…œì„ êµ¬ì…í–ˆìŠµë‹ˆë‹¤!");
+
+    }
 }

@@ -1,16 +1,16 @@
 package RPG_Final.src.RPG_final;
 
 public class Character {
-	String name = "";// ĳ���� �̸�
-	int level;// ����
-	int HP;// ����ü��
-	int Max_HP;// �ְ� ü��
-	int ACK;// ���ݷ�
-	int DEF;// ����
-	boolean inParty;// ��Ƽ�� �����ִ���
-	String weapon;// ����
-	String armor;// ����
-	String ring;// ����
+	String name = "";//
+	int level;//
+	int HP;//
+	int Max_HP;//
+	int ACK;//
+	int DEF;//
+	boolean inParty;//
+	String weapon;//
+	String armor;//
+	String ring;//
 	boolean isDead=false;
 
 	Character(){
