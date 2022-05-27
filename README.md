@@ -1,4 +1,8 @@
-# RPG_ver2
+# BBangcket Monster
+
+## 포켓몬 스티커를 얻기위해 시합하라! 
+
+
 -Key Description:
 1. Create guild by specifying characters
 2. Combat against monsters
