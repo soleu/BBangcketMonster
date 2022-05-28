@@ -1,8 +1,7 @@
-package RPG_Final.src.RPG_final;
+package bbangcketMonster;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Vector;
 //인벤토리, 골드 담당
 

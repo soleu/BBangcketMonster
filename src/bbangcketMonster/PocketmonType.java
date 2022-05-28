@@ -1,4 +1,4 @@
-package RPG_Final.src.RPG_final;
+package bbangcketMonster;
 
 public enum PocketmonType {
     WATER("물"),

@@ -1,7 +1,7 @@
-package RPG_Final.src.RPG_final;
+package bbangcketMonster;
 
-public class Zombie_Unit extends Unit {
-	Zombie_Unit(){
+public class Zombie_Rival_Unit extends RivalUnit {
+	Zombie_Rival_Unit(){
 		name="Zombie";
 		HP=90;
 		Max_HP=90;

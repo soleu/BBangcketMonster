@@ -1,8 +1,12 @@
-package RPG_Final.src.RPG_final;
+package bbangcketMonster.stage;
+
+import bbangcketMonster.Guild;
+import bbangcketMonster.Item;
+import bbangcketMonster.User;
 
 import java.util.Scanner;
 
-public class Shopping {
+public class ShopStageTemp {
 	Scanner scan=new Scanner(System.in);
 	
 	User user=User.getuser();

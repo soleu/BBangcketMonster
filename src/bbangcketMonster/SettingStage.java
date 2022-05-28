@@ -1,11 +1,14 @@
 
 
-package RPG_Final.src.RPG_final;
+package bbangcketMonster;
+
+import bbangcketMonster.stage.ShopStageTemp;
+import bbangcketMonster.stage.Stage;
 
 public class SettingStage extends Stage {
     GuildManager GuildM = GuildManager.getGuildM();
     Shop shop = Shop.getShop();
-    Shopping shopping = new Shopping();
+    ShopStageTemp shopping = new ShopStageTemp();
 
     @Override
     void init() {

@@ -1,7 +1,7 @@
-package RPG_Final.src.RPG_final;
+package bbangcketMonster;
 
-public class Ork_Unit extends Unit{
-	Ork_Unit(){
+public class Ork_Rival_Unit extends RivalUnit {
+	Ork_Rival_Unit(){
 		name="Ork";
 		HP=100;
 		Max_HP=100;
@@ -11,7 +11,7 @@ public class Ork_Unit extends Unit{
 	@Override
 	void attack(Character cha) {
 		cha.HP-=ACK;
-		System.out.println(cha.name+"À» "+ACK+"Å¸°Ý");
+		System.out.println(cha.name+"ï¿½ï¿½ "+ACK+"Å¸ï¿½ï¿½");
 		if(cha.HP<=0) {cha.isDead=true; cha.HP=0;}
 	}
 

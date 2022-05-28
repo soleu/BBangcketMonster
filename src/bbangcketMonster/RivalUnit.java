@@ -1,6 +1,6 @@
-package RPG_Final.src.RPG_final;
+package bbangcketMonster;
 
-public abstract class Unit {
+public abstract class RivalUnit {
 	String name;
 	int ACK;
 	int DEF;
@@ -8,7 +8,7 @@ public abstract class Unit {
 	int Max_HP;
 	boolean isDead=false;
 	
-	Unit() {
+	RivalUnit() {
 		name = "";
 		ACK = 10;
 		DEF = 10;

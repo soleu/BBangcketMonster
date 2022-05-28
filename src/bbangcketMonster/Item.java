@@ -1,4 +1,4 @@
-package RPG_Final.src.RPG_final;
+package bbangcketMonster;
 
 public class Item {
     String name;//물품 이름

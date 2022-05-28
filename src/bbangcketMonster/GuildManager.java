@@ -1,4 +1,4 @@
-package RPG_Final.src.RPG_final;
+package bbangcketMonster;
 import java.util.Scanner;
 
 class GuildManager {

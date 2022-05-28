@@ -1,4 +1,4 @@
-package RPG_Final.src.RPG_final;
+package bbangcketMonster;
 
 import java.util.Scanner;
 import java.util.Vector;
