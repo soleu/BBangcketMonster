@@ -1,6 +1,6 @@
-package bbangcketMonster;
+package bbangcketMonster.entity;
 
-public abstract class RivalUnit {
+public abstract class NpcUnit {
 	String name;
 	int ACK;
 	int DEF;
@@ -8,7 +8,7 @@ public abstract class RivalUnit {
 	int Max_HP;
 	boolean isDead=false;
 	
-	RivalUnit() {
+	NpcUnit() {
 		name = "";
 		ACK = 10;
 		DEF = 10;
@@ -16,9 +16,11 @@ public abstract class RivalUnit {
 		Max_HP = 50;
 	}
 
-	abstract void attack(Character cha);
+	abstract void normalAttack(Character cha);
 
-	abstract void critialAttck();
+	abstract void weakAttack();
+
+	abstract  void strongAttack();
 
 	void printUnit() {
 		System.out.println("[" + name + "] HP : " + HP + "/" + Max_HP + " ACK : " + ACK + " DEF: " + DEF);
