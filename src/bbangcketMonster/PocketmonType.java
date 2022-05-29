@@ -1,6 +1,6 @@
 package bbangcketMonster;
 
-public enum PocketmonType {
+public enum PokemonType {
     WATER("물"),
     FIRE("불"),
     GRASS("풀"),
@@ -16,7 +16,7 @@ public enum PocketmonType {
     private String type;
     private String name;
 
-    PocketmonType(String name) {
+    PokemonType(String name) {
         this.name = name;
     }
 }

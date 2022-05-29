@@ -3,11 +3,11 @@ package bbangcketMonster;
 import java.util.List;
 
 public class Superior {
-    PocketmonType type;
-    private List<PocketmonType> strong;
-    private List<PocketmonType> weak;
+    PokemonType type;
+    private List<PokemonType> strong;
+    private List<PokemonType> weak;
 
-    public Superior(PocketmonType type, List strong, List weak) {
+    public Superior(PokemonType type, List strong, List weak) {
         this.type = type;
         this.strong = strong;
         this.weak = weak;

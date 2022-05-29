@@ -1,9 +1,9 @@
 package bbangcketMonster;
 
 import bbangcketMonster.stage.BattleStage;
+import bbangcketMonster.stage.InventoryStage;
 import bbangcketMonster.stage.LobbyStage;
-import bbangcketMonster.stage.ShopStage;
-import bbangcketMonster.stage.ShopStageTemp;
+import bbangcketMonster.stage.ManageStage;
 import bbangcketMonster.stage.Stage;
 import bbangcketMonster.stage.TitleStage;
 
@@ -26,18 +26,17 @@ public class GameManager {
     public Scanner scan = new Scanner(System.in);
     public Random ran = new Random();
     Map<String, Stage> StageList = new HashMap<String, Stage>();
-    GuildManager guildM = GuildManager.getGuildM();
 
     public static String curStageName = "";
     public static String nextStageName = "";
 
     public void init() {
-        guildM.guild.initMember();
+//        guildM.guild.initMember();
         StageList.put("TITLE", new TitleStage());
         StageList.put("LOBBY", new LobbyStage());
-        StageList.put("SETTING", new SettingStage());
         StageList.put("BATTLE", new BattleStage());
-        StageList.put("SHOP", new ShopStage());
+        StageList.put("MANAGE", new ManageStage());
+        StageList.put("INVENTORY", new InventoryStage());
 
         nextStageName = "TITLE";
     }
@@ -72,5 +71,4 @@ public class GameManager {
         update();
 
     }
-
 }

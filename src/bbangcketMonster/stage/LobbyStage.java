@@ -3,24 +3,24 @@ package bbangcketMonster.stage;
 
 import bbangcketMonster.GameManager;
 
-public class LobbyStage extends Stage {
+public class LobbyStage implements Stage {
     final GameManager gm = GameManager.getInstance();
 
     @Override
-    void init() {
-        System.out.println("====[Lobby]====");
-        System.out.println("[1]포켓몬 빵 사러가기 [2] 인벤토리/포켓몬 관리  [3] 아이템샵 [4] 끝내기");
+    public void init() {
+        System.out.println("====[메인]====");
+        System.out.println("[1]포켓몬 빵 사러가기 [2] 포켓몬 관리 [3] 인벤토리 확인 [4] 끝내기 ");
     }
 
     @Override
-    boolean update() {
+    public boolean update() {
         int choice = gm.scan.nextInt();
         if (choice == 1) {
             gm.nextStageName = "BATTLE";
         } else if (choice == 2) {
-           gm.nextStageName = "SETTING";
+            gm.nextStageName = "MANAGE";
         } else if (choice == 3) {
-            gm.nextStageName = "SHOP";
+            gm.nextStageName = "INVENTORY";
         } else if (choice == 4) {
             gm.nextStageName = "";
         }

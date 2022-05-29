@@ -2,16 +2,16 @@ package bbangcketMonster.stage;
 
 import bbangcketMonster.GameManager;
 
-public class TitleStage extends Stage {
+public class TitleStage implements Stage {
 
-	GameManager gameManager =
+	GameManager gm = GameManager.getInstance();
 	@Override
-	void init() {
+	public void init() {
 
 	}
 
 	@Override
-	boolean update() {
+	public boolean update() {
 		System.out.println("______ ______                             _           _    ___  ___                    _               \n" +
 				"| ___ \\| ___ \\                           | |         | |   |  \\/  |                   | |              \n" +
 				"| |_/ /| |_/ /  __ _  _ __    __ _   ___ | | __  ___ | |_  | .  . |  ___   _ __   ___ | |_   ___  _ __ \n" +
@@ -21,9 +21,9 @@ public class TitleStage extends Stage {
 				"                              __/ |                                                                    \n" +
 				"                             |___/                                                                   ");
 		System.out.println("[PRESS ANY BUTTON]");
-		String txt = GameManager.gm.scan.next();
+		String txt = gm.scan.next();
 		if (txt != null) {
-			GameManager.gm.nextStageName = "LOBBY";
+			gm.nextStageName = "LOBBY";
 			return true;
 		}
 		return false;
