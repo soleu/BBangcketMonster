@@ -1,5 +1,3 @@
-
-
 package bbangkeMonster.stage;
 
 import bbangkeMonster.GameManager;
@@ -12,13 +10,14 @@ public class ManageStage implements Stage {
     @Override
     public void init() {
         System.out.println("====[포켓몬 관리]====");
-        System.out.println("[1] 길드원 확인\t [2] 길드원 추가\t[3] 길드원 삭제\t");
-        System.out.println("[4] 뒤로 가기\t");
+        System.out.println("[1] 포켓몬 확인\t [2] 포켓몬 뽑기\t[3] 포켓몬 퇴출\t");
+        System.out.println("[4] 소지한 포켓몬 교체\t [5] 포켓몬 정렬\t [6] 뒤로가기\t");
     }
 
     @Override
     public boolean update() {
         while (true) {
+            init();
             int choice = gm.scan.nextInt();
             if (choice == 1) {
                 guild.memberList();
@@ -27,6 +26,10 @@ public class ManageStage implements Stage {
             } else if (choice == 3) {
                 guild.deleteMember();
             } else if (choice == 4) {
+                guild.switchMember();
+            } else if (choice == 5) {
+                guild.arrayMember();
+            } else if (choice == 6) {
                 break;
             }
         }

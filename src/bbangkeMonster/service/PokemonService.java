@@ -9,7 +9,7 @@ import bbangkeMonster.entity.Superior;
 import static bbangkeMonster.data.PokemonSetting.superiorList;
 
 public class PokemonService {
-    private static PokemonService pokemonService;
+    private static PokemonService pokemonService = new PokemonService();
 
     private PokemonService() {
     }

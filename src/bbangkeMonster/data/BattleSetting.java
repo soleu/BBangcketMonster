@@ -1,10 +1,10 @@
 package bbangkeMonster.data;
 
 import bbangkeMonster.GuildManager;
-import bbangkeMonster.entity.PlantNpcUnit;
-import bbangkeMonster.entity.TigerNpcUnit;
 import bbangkeMonster.entity.FishNpcUnit;
 import bbangkeMonster.entity.NpcUnit;
+import bbangkeMonster.entity.PlantNpcUnit;
+import bbangkeMonster.entity.TigerNpcUnit;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.Vector;
 
 public class BattleSetting {
-    private static BattleSetting battleSetting;
+    private static BattleSetting battleSetting = new BattleSetting();
     private Map<Integer, NpcUnit> npcList = new HashMap<Integer, NpcUnit>();
     public static Vector<NpcUnit> currentNpcList;
     GuildManager guild = GuildManager.getInstance();
@@ -32,7 +32,6 @@ public class BattleSetting {
         System.out.println("...");
         randomLine();
         initNpc();
-        initPlayer();
         System.out.println("전투를 시작합니다.");
     }
 
@@ -58,10 +57,5 @@ public class BattleSetting {
             currentNpcList.add(npcList.get(rNum2));
         }
     }
-
-    public void initPlayer() {
-        guild.initMember();
-    }
-
 }
 

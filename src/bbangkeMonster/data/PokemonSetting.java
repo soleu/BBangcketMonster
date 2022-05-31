@@ -16,13 +16,16 @@ public class PokemonSetting {
 
     private static PokemonSetting cm = new PokemonSetting();
 
+    private PokemonSetting() {
+    }
+
     public static PokemonSetting getCm() {
         return cm;
     }
 
     private Map<Integer, String> noname = new HashMap<Integer, String>();
-    private Vector<Pokemon> allPokemon = new Vector<>();
-    public static List<Superior> superiorList;
+    public static Vector<Pokemon> allPokemon = new Vector<>();
+    public static List<Superior> superiorList = new ArrayList<>();
 
     public void initPokemon() {
         String[][] names = {
@@ -36,15 +39,17 @@ public class PokemonSetting {
         int[] HP = {100, 120, 80, 85, 90, 110, 130, 105, 70, 80};
         ArrayList<Skill>[] skillList = initSkillList();
         int[] DEF = {30, 35, 25, 20, 36, 56, 36, 27, 58, 60};
-
-        for (int i = 0; i < names.length; i++) {
-            allPokemon.add(new Pokemon(names[i][0], HP[i], skillList[i], DEF[i], type[i]));
-            noname.put(i, names[i][0]);
+        for (int i = 0; i < 10; i++) {
+            allPokemon.add(new Pokemon(names[0][i], HP[i], skillList[i], DEF[i], type[i]));
+            noname.put(i, names[0][i]);
         }
     }
 
     public ArrayList<Skill>[] initSkillList() {
         ArrayList<Skill>[] skillList = new ArrayList[10];
+        for (int i = 0; i < 10; i++) {
+            skillList[i] = new ArrayList<Skill>();
+        }
         //피카츄
         skillList[0].add(new Skill("전기쇼크", 30));
         skillList[0].add(new Skill("일렉트릭볼", 40));

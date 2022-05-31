@@ -18,8 +18,7 @@ public class BattleStage implements Stage {
     final NpcService npcService = NpcService.getInstance();
     final PokemonService pokemonService = PokemonService.getInstance();
     GuildManager guild = GuildManager.getInstance();
-
-
+    
     Scanner scan = new Scanner(System.in);
 
     int npcDead = 0;

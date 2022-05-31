@@ -8,7 +8,7 @@ import bbangkeMonster.entity.Superior;
 import static bbangkeMonster.data.PokemonSetting.superiorList;
 
 public class NpcService {
-    private static NpcService npcService;
+    private static NpcService npcService = new NpcService();
 
     private NpcService() {
     }
@@ -17,11 +17,11 @@ public class NpcService {
         return npcService;
     }
 
-    public void attack(NpcUnit npcUnit, Pokemon pokemon){
-        String superior = computeSuperior(npcUnit.getType(),pokemon.getType());
-    if(superior.equals("user")) npcUnit.strongAttack(pokemon);
-    else if(superior.equals("rival")) npcUnit.weakAttack(pokemon);
-    else npcUnit.normalAttack(pokemon);
+    public void attack(NpcUnit npcUnit, Pokemon pokemon) {
+        String superior = computeSuperior(npcUnit.getType(), pokemon.getType());
+        if (superior.equals("user")) npcUnit.strongAttack(pokemon);
+        else if (superior.equals("rival")) npcUnit.weakAttack(pokemon);
+        else npcUnit.normalAttack(pokemon);
     }
 
     public String computeSuperior(PokemonType myType, PokemonType rivalType) {

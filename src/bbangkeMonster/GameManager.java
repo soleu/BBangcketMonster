@@ -12,8 +12,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class GameManager {
-    //singleton
-    private static GameManager gameManager;
+    private static GameManager gameManager = new GameManager();
 
     private GameManager() {
     }
@@ -24,12 +23,13 @@ public class GameManager {
 
     public Scanner scan = new Scanner(System.in);
     Map<String, Stage> StageList = new HashMap<String, Stage>();
+    GuildManager guildManager = GuildManager.getInstance();
 
     public static String curStageName = "";
     public static String nextStageName = "";
 
     public void init() {
-//        guildM.guild.initMember();
+        guildManager.initMember();
         StageList.put("TITLE", new TitleStage());
         StageList.put("LOBBY", new LobbyStage());
         StageList.put("BATTLE", new BattleStage());
