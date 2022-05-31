@@ -33,6 +33,14 @@ public class GuildManager {
         return guildMember;
     }
 
+    public Vector<Pokemon> getPartyMember() {
+        Vector<Pokemon> member = new Vector<>();
+        for (Pokemon pokemon : guildMember) {
+            if (pokemon.isInParty()) member.add(pokemon);
+        }
+        return member;
+    }
+
     // 처음 길드 멤버 초기화 (길드 및 파티는 순서대로 4명)
     public void initMember() {
         cm.initPokemon();

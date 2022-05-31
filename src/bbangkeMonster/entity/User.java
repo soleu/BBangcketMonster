@@ -8,20 +8,23 @@ public class User {
 
     private static User user = new User();
 
-    public static User getuser() {
+    public static User getUser() {
         return user;
     }
 
-    int money = 50000;// 기본급
-    // 인벤
-//    Vector<Item> Total_Inven = new Vector<>();
-//
-//    Map<Item, String> Total_map = new HashMap<Item, String>();// 카테고리 매치
-//    Map<Item, String> chara_map = new HashMap<Item, String>();// 캐릭터와 매치
+    private int[] stickers = new int[10];
 
-    void init() {
-
+    public void initUser() {
+        for (int i = 0; i < stickers.length; i++) {
+            stickers[i] = 0;
+        }
     }
 
+    public void earnSticker(Sticker sticker) {
+        stickers[sticker.no - 1]++;
+    }
 
+    public int[] getStickers() {
+        return stickers;
+    }
 }

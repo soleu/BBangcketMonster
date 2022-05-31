@@ -1,5 +1,6 @@
 package bbangkeMonster;
 
+import bbangkeMonster.entity.User;
 import bbangkeMonster.stage.BattleStage;
 import bbangkeMonster.stage.InventoryStage;
 import bbangkeMonster.stage.LobbyStage;
@@ -24,11 +25,13 @@ public class GameManager {
     public Scanner scan = new Scanner(System.in);
     Map<String, Stage> StageList = new HashMap<String, Stage>();
     GuildManager guildManager = GuildManager.getInstance();
+    User user = User.getUser();
 
     public static String curStageName = "";
     public static String nextStageName = "";
 
     public void init() {
+        user.initUser();
         guildManager.initMember();
         StageList.put("TITLE", new TitleStage());
         StageList.put("LOBBY", new LobbyStage());

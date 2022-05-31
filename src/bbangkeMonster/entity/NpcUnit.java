@@ -9,7 +9,6 @@ public abstract class NpcUnit {
     protected boolean isDead = false;
     protected PokemonType type;
 
-
     NpcUnit() {
         name = "";
         ACK = 10;

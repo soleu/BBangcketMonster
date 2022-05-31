@@ -6,14 +6,13 @@ public class Pokemon {
     private String name = "";
     private int HP;
     private int Max_HP;
-    //    private int ACK;
     private ArrayList<Skill> skills = new ArrayList<>();
     private int DEF;
     private PokemonType type;
     private int level;
+    private int exp;
     private boolean inParty;
     private boolean isDead = false;
-
 
     public Pokemon() {
     }
@@ -27,12 +26,21 @@ public class Pokemon {
         this.level = 1;
         this.inParty = false;
         this.type = type;
+        this.exp = 0;
     }
 
     public void checkDead() {
         this.isDead = true;
         this.HP = 0;
         System.out.println(name + "(이)가 기절했다.");
+    }
+
+    public void earnExpPoint() {
+        this.exp += 30 / (level * 0.9); //레벨마다 차등효과
+    }
+
+    public void rebirth() {
+        this.HP = Max_HP;
     }
 
     public void setInParty() {
@@ -44,7 +52,7 @@ public class Pokemon {
     }
 
     public void printCharaInfo() {
-        System.out.println("[" + name + "] name : " + level + " HP :" + HP + "/" + Max_HP + " Party : " + inParty);
+        System.out.println("[" + name + "] level : " + level + " HP :" + HP + "/" + Max_HP + " type [" + type.name() + "]");
     }
 
     public void attacked(int ack) {

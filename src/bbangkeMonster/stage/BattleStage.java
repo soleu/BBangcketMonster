@@ -3,12 +3,17 @@ package bbangkeMonster.stage;
 import bbangkeMonster.GameManager;
 import bbangkeMonster.GuildManager;
 import bbangkeMonster.data.BattleSetting;
+import bbangkeMonster.data.StickerSetting;
 import bbangkeMonster.entity.NpcUnit;
 import bbangkeMonster.entity.Pokemon;
+import bbangkeMonster.entity.Sticker;
+import bbangkeMonster.entity.User;
 import bbangkeMonster.service.NpcService;
 import bbangkeMonster.service.PokemonService;
 
+import java.util.Random;
 import java.util.Scanner;
+import java.util.Vector;
 
 import static bbangkeMonster.data.BattleSetting.currentNpcList;
 
@@ -17,8 +22,9 @@ public class BattleStage implements Stage {
     final BattleSetting battleSetting = BattleSetting.getInstance();
     final NpcService npcService = NpcService.getInstance();
     final PokemonService pokemonService = PokemonService.getInstance();
+    final User user = User.getUser();
     GuildManager guild = GuildManager.getInstance();
-    
+
     Scanner scan = new Scanner(System.in);
 
     int npcDead = 0;
@@ -34,43 +40,48 @@ public class BattleStage implements Stage {
     public boolean update() {
         boolean turn = false;
         while (true) {
-            if (checkIfDeadMon() == true) {
+            if (checkIfDeadMon()) {
                 System.out.println("승리! 결투에서 이겼습니다.");
                 System.out.println("포켓몬 빵과 경험치를 얻었습니다.");
-                //경험치로 레벨업하기
-                //포켓몬 빵 뜯기
+                for (Pokemon pokemon : guild.getPartyMember()) {
+                    pokemonService.earnExp(pokemon);
+                }
+                openBread();
                 gm.nextStageName = "LOBBY";
                 return true;
             }
-            if (checkIfDeadPokemon() == true) {
+            if (checkIfDeadPokemon()) {
                 System.out.println("패배! 소지한 포켓몬이 모두 기절하였습니다. 집으로 돌아갑니다.");
+                for (Pokemon pokemon : guild.getPartyMember()) {
+                    pokemonService.earnExp(pokemon); //rebirth
+                }
                 gm.nextStageName = "LOBBY";
                 return true;
             }
             MonsterState();
             playerState();
 
-            if (turn == false) {
-                // player turn
-                for (int i = 0; i < guild.getGuildMember().size(); i++) {
-                    Pokemon pokemon = guild.getGuildMember().get(i);
+            if (!turn) {
+                Vector<Pokemon> pokemons = guild.getPartyMember();
+                for (int i = 0; i < pokemons.size(); i++) {
+                    Pokemon pokemon = pokemons.get(i);
                     if (pokemon.isDead() == true)
                         continue;
-                    System.out.println(pokemon.getName() + "의 턴");
+                    System.out.println("\n" + pokemon.getName() + "의 턴");
                     //공격 몬스터 선택
                     System.out.println("공격할 몬스터 선택 : ");
                     for (int j = 0; j < currentNpcList.size(); j++) {
                         if (!currentNpcList.get(j).isDead()) {
-                            System.out.println("[" + j + 1 + "] " + currentNpcList.get(j).getName()
+                            System.out.println("[" + (j + 1) + "] " + currentNpcList.get(j).getName()
                                     + "[" + currentNpcList.get(j).getHP() + "/" + currentNpcList.get(j).getMax_HP() + "]");
                         } else {
-                            System.out.println("[" + j + 1 + "] " + currentNpcList.get(j).getName()
+                            System.out.println("[" + (j + 1) + "] " + currentNpcList.get(j).getName()
                                     + "[기절함]");
                         }
                     }
                     int target = scan.nextInt() - 1;
+                    System.out.println("공격 선택 :");
                     pokemonService.showSkills(pokemon);
-                    System.out.println("번호 입력 : ");
                     int choice = scan.nextInt();
                     pokemonService.attack(pokemon, currentNpcList.get(target), choice);
                 }
@@ -130,5 +141,20 @@ public class BattleStage implements Stage {
             return true;
         }
         return false;
+    }
+
+    public void openBread() {
+        Random random = new Random();
+
+        System.out.println("포켓몬 빵을 얻었습니다!");
+        System.out.println("빵을 개봉합니다.");
+        System.out.println("...");
+        System.out.println("...");
+        int rand = random.nextInt(5);//0~4
+        StickerSetting stickerSetting = new StickerSetting();
+        Sticker sticker = stickerSetting.stickers.get(rand);
+        System.out.println(sticker.getName() + "스티커를 얻었습니다!");
+        System.out.println("인벤토리에서 이미지를 확인할 수 있습니다.");
+        user.earnSticker(sticker);
     }
 }

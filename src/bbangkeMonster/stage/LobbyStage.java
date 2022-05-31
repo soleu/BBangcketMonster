@@ -26,5 +26,4 @@ public class LobbyStage implements Stage {
         }
         return true;
     }
-
 }
