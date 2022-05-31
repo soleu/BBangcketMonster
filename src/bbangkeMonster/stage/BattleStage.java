@@ -1,11 +1,12 @@
 package bbangkeMonster.stage;
 
-import bbangkeMonster.data.BattleSetting;
-import bbangkeMonster.entity.Pokemon;
 import bbangkeMonster.GameManager;
 import bbangkeMonster.GuildManager;
+import bbangkeMonster.data.BattleSetting;
 import bbangkeMonster.entity.NpcUnit;
+import bbangkeMonster.entity.Pokemon;
 import bbangkeMonster.service.NpcService;
+import bbangkeMonster.service.PokemonService;
 
 import java.util.Scanner;
 
@@ -15,6 +16,7 @@ public class BattleStage implements Stage {
     final GameManager gm = GameManager.getInstance();
     final BattleSetting battleSetting = BattleSetting.getInstance();
     final NpcService npcService = NpcService.getInstance();
+    final PokemonService pokemonService = PokemonService.getInstance();
     GuildManager guild = GuildManager.getInstance();
 
 
@@ -56,19 +58,22 @@ public class BattleStage implements Stage {
                     if (pokemon.isDead() == true)
                         continue;
                     System.out.println(pokemon.getName() + "의 턴");
-                    System.out.println("[1] 공격 [2] 물약");
+                    //공격 몬스터 선택
+                    System.out.println("공격할 몬스터 선택 : ");
+                    for (int j = 0; j < currentNpcList.size(); j++) {
+                        if (!currentNpcList.get(j).isDead()) {
+                            System.out.println("[" + j + 1 + "] " + currentNpcList.get(j).getName()
+                                    + "[" + currentNpcList.get(j).getHP() + "/" + currentNpcList.get(j).getMax_HP() + "]");
+                        } else {
+                            System.out.println("[" + j + 1 + "] " + currentNpcList.get(j).getName()
+                                    + "[기절함]");
+                        }
+                    }
+                    int target = scan.nextInt() - 1;
+                    pokemonService.showSkills(pokemon);
                     System.out.println("번호 입력 : ");
                     int choice = scan.nextInt();
-                    if (choice == 1) {
-                        int j = 0;
-                        for (; j < currentNpcList.size(); j++) {
-                            if (currentNpcList.get(j).getHP() != 0)
-                                break;
-                        }
-                        pokemon.attack(currentNpcList.get(j));
-                    } else if (choice == 2) {
-                        System.out.println("체력을 회복합니다. +30");
-                    }
+                    pokemonService.attack(pokemon, currentNpcList.get(target), choice);
                 }
                 turn = true;
             } else {
@@ -87,6 +92,7 @@ public class BattleStage implements Stage {
                 turn = false;
             }
         }
+
     }
 
     void playerState() {

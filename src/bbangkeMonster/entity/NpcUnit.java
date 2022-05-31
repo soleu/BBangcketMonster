@@ -19,7 +19,9 @@ public abstract class NpcUnit {
     }
 
     public abstract void normalAttack(Pokemon cha);
+
     public abstract void weakAttack(Pokemon pokemon);
+
     public abstract void strongAttack(Pokemon pokemon);
 
     public void minusHP(int ackPoint) {
@@ -71,5 +73,4 @@ public abstract class NpcUnit {
         setHP(0);
         System.out.println(name + "(이)가 기절했다.");
     }
-
 }

@@ -22,7 +22,7 @@ public class TigerNpcUnit extends NpcUnit {
 
     @Override
     public void weakAttack(Pokemon pokemon) {
-        pokemon.attacked(this.ACK);
+        pokemon.attacked(this.ACK / 2);
         System.out.println(name + "의 불꽃 세례 공격..!");
         System.out.println(pokemon.getName() + "에게 " + ACK / 2 + "타격");
         System.out.println("효과가 별로인 듯하다...");
@@ -33,7 +33,7 @@ public class TigerNpcUnit extends NpcUnit {
 
     @Override
     public void strongAttack(Pokemon pokemon) {
-        pokemon.attacked(this.ACK);
+        pokemon.attacked(this.ACK * 2);
         System.out.println(name + "의 불꽃 엄니 공격..!");
         System.out.println(pokemon.getName() + "에게 " + ACK * 2 + "타격");
         System.out.println("효과는 굉장했다..!");

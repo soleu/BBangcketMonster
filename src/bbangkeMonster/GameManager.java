@@ -9,7 +9,6 @@ import bbangkeMonster.stage.TitleStage;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.Scanner;
 
 public class GameManager {
@@ -24,7 +23,6 @@ public class GameManager {
     }
 
     public Scanner scan = new Scanner(System.in);
-    public Random ran = new Random();
     Map<String, Stage> StageList = new HashMap<String, Stage>();
 
     public static String curStageName = "";
@@ -69,6 +67,5 @@ public class GameManager {
     void run() {
         init();
         update();
-
     }
 }
