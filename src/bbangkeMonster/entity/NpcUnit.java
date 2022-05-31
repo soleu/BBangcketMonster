@@ -1,7 +1,5 @@
 package bbangkeMonster.entity;
 
-import bbangkeMonster.PokemonType;
-
 public abstract class NpcUnit {
     protected String name;
     protected int ACK;
@@ -20,11 +18,21 @@ public abstract class NpcUnit {
         Max_HP = 50;
     }
 
-    abstract void normalAttack(Pokemon cha);
+    public abstract void normalAttack(Pokemon cha);
+    public abstract void weakAttack(Pokemon pokemon);
+    public abstract void strongAttack(Pokemon pokemon);
 
-    abstract void weakAttack();
+    public void minusHP(int ackPoint) {
+        this.HP -= ackPoint;
+    }
 
-    abstract void strongAttack();
+    public void setHP(int ackPoint) {
+        this.HP = 0;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
 
     public String getName() {
         return name;
@@ -57,4 +65,11 @@ public abstract class NpcUnit {
     public void printUnit() {
         System.out.println("[" + name + "] HP : " + HP + "/" + Max_HP + " ACK : " + ACK + " DEF: " + DEF);
     }
+
+    public void checkDead() {
+        setDead(true);
+        setHP(0);
+        System.out.println(name + "(이)가 기절했다.");
+    }
+
 }

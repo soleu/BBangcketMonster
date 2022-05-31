@@ -1,10 +1,8 @@
 package bbangkeMonster.entity;
 
-import bbangkeMonster.PokemonType;
-
 public class FishNpcUnit extends NpcUnit {
     public FishNpcUnit() {
-        name = "잉어킹";
+        name = "쏘드라";
         HP = 100;
         Max_HP = 100;
         ACK = 30;
@@ -13,23 +11,35 @@ public class FishNpcUnit extends NpcUnit {
     }
 
     @Override
-    void normalAttack(Pokemon pokemon) {
-        pokemon.HP -= ACK;
-        System.out.println(pokemon.getName() + "잉어킹" + ACK + "200");
+    public void normalAttack(Pokemon pokemon) {
+        pokemon.attacked(this.ACK);
+        System.out.println(name + "의 물대포 공격..!");
+        System.out.println(pokemon.getName() + "에게 " + ACK + "타격");
         if (pokemon.getHP() <= 0) {
-            pokemon.isDead() = true;
-            pokemon.getHP() = 0;
+            pokemon.checkDead();
         }
     }
 
     @Override
-    void weakAttack() {
-
+    public void weakAttack(Pokemon pokemon) {
+        pokemon.attacked(this.ACK);
+        System.out.println(name + "의 거품광선 공격..!");
+        System.out.println(pokemon.getName() + "에게 " + ACK / 2 + "타격");
+        System.out.println("효과가 별로인 듯하다...");
+        if (pokemon.getHP() <= 0) {
+            pokemon.checkDead();
+        }
     }
 
     @Override
-    void strongAttack() {
-
+    public void strongAttack(Pokemon pokemon) {
+        pokemon.attacked(this.ACK);
+        System.out.println(name + "의 하이드로펌프 공격..!");
+        System.out.println(pokemon.getName() + "에게 " + ACK * 2 + "타격");
+        System.out.println("효과는 굉장했다..!");
+        if (pokemon.getHP() <= 0) {
+            pokemon.checkDead();
+        }
     }
-
 }
+

@@ -1,4 +1,4 @@
-package bbangcketMonster;
+package bbangkeMonster.entity;
 
 public enum PokemonType {
     WATER("물"),
@@ -12,7 +12,6 @@ public enum PokemonType {
     BUG("곤충")
     ;
 
-    private int categoryId;
     private String type;
     private String name;
 

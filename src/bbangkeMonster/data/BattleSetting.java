@@ -1,6 +1,6 @@
 package bbangkeMonster.data;
 
-import bbangkeMonster.Guild;
+import bbangkeMonster.GuildManager;
 import bbangkeMonster.entity.PlantNpcUnit;
 import bbangkeMonster.entity.TigerNpcUnit;
 import bbangkeMonster.entity.FishNpcUnit;
@@ -15,7 +15,7 @@ public class BattleSetting {
     private static BattleSetting battleSetting;
     private Map<Integer, NpcUnit> npcList = new HashMap<Integer, NpcUnit>();
     public static Vector<NpcUnit> currentNpcList;
-    Guild guild = Guild.getInstance();
+    GuildManager guild = GuildManager.getInstance();
 
     Random random = new Random();
 

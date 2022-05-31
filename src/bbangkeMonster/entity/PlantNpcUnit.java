@@ -1,7 +1,5 @@
 package bbangkeMonster.entity;
 
-import bbangkeMonster.PokemonType;
-
 public class PlantNpcUnit extends NpcUnit {
     public PlantNpcUnit() {
         name = "모다피";
@@ -13,17 +11,34 @@ public class PlantNpcUnit extends NpcUnit {
     }
 
     @Override
-    void normalAttack(Pokemon cha) {
-
+    public void normalAttack(Pokemon pokemon) {
+        pokemon.attacked(this.ACK);
+        System.out.println(name + "의 잎날가르기 공격..!");
+        System.out.println(pokemon.getName() + "에게 " + ACK + "타격");
+        if (pokemon.getHP() <= 0) {
+            pokemon.checkDead();
+        }
     }
 
     @Override
-    void weakAttack() {
-
+    public void weakAttack(Pokemon pokemon) {
+        pokemon.attacked(this.ACK);
+        System.out.println(name + "의 덩굴채찍 공격..!");
+        System.out.println(pokemon.getName() + "에게 " + ACK / 2 + "타격");
+        System.out.println("효과가 별로인 듯하다...");
+        if (pokemon.getHP() <= 0) {
+            pokemon.checkDead();
+        }
     }
 
     @Override
-    void strongAttack() {
-
+    public void strongAttack(Pokemon pokemon) {
+        pokemon.attacked(this.ACK);
+        System.out.println(name + "의 에너지볼 공격..!");
+        System.out.println(pokemon.getName() + "에게 " + ACK * 2 + "타격");
+        System.out.println("효과는 굉장했다..!");
+        if (pokemon.getHP() <= 0) {
+            pokemon.checkDead();
+        }
     }
 }

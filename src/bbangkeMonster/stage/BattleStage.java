@@ -3,8 +3,9 @@ package bbangkeMonster.stage;
 import bbangkeMonster.data.BattleSetting;
 import bbangkeMonster.entity.Pokemon;
 import bbangkeMonster.GameManager;
-import bbangkeMonster.Guild;
+import bbangkeMonster.GuildManager;
 import bbangkeMonster.entity.NpcUnit;
+import bbangkeMonster.service.NpcService;
 
 import java.util.Scanner;
 
@@ -13,7 +14,9 @@ import static bbangkeMonster.data.BattleSetting.currentNpcList;
 public class BattleStage implements Stage {
     final GameManager gm = GameManager.getInstance();
     final BattleSetting battleSetting = BattleSetting.getInstance();
-    Guild guild = Guild.getInstance();
+    final NpcService npcService = NpcService.getInstance();
+    GuildManager guild = GuildManager.getInstance();
+
 
     Scanner scan = new Scanner(System.in);
 
@@ -69,8 +72,7 @@ public class BattleStage implements Stage {
                 }
                 turn = true;
             } else {
-                // monster turn
-                System.out.println("[몬스터 턴]");
+                System.out.println("[상대방 턴]");
                 for (int i = 0; i < currentNpcList.size(); i++) {
                     NpcUnit npcUnit = currentNpcList.get(i);
                     if (npcUnit.isDead() == true)
@@ -80,7 +82,7 @@ public class BattleStage implements Stage {
                         if (guild.getGuildMember().get(j).getHP() != 0)
                             break;
                     }
-                    npcUnit.attack(guild.getGuildMember().get(j));
+                    npcService.attack(npcUnit, guild.getGuildMember().get(j));
                 }
                 turn = false;
             }
@@ -88,7 +90,7 @@ public class BattleStage implements Stage {
     }
 
     void playerState() {
-        System.out.println("====[Player]====");
+        System.out.println("====[플레이어]====");
         for (int i = 0; i < guild.getGuildMember().size(); i++) {
             guild.getGuildMember().get(i).printCharaInfo();
         }
@@ -96,7 +98,7 @@ public class BattleStage implements Stage {
     }
 
     void MonsterState() {
-        System.out.println("====[Monster]====");
+        System.out.println("====[상대방]====");
         for (int i = 0; i < currentNpcList.size(); i++) {
             currentNpcList.get(i).printUnit();
         }

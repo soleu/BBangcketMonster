@@ -1,8 +1,8 @@
-package bbangcketMonster.data;
+package bbangkeMonster.data;
 
-import bbangcketMonster.PokemonType;
-import bbangcketMonster.Superior;
-import bbangcketMonster.entity.Pokemon;
+import bbangkeMonster.entity.PokemonType;
+import bbangkeMonster.entity.Superior;
+import bbangkeMonster.entity.Pokemon;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -10,17 +10,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-public class PockemonSetting {
+public class PokemonSetting {
 
-    private static PockemonSetting cm = new PockemonSetting();
-    List<Superior> superiorList;
-
-    public static PockemonSetting getCm() {
+    private static PokemonSetting cm = new PokemonSetting();
+    public static PokemonSetting getCm() {
         return cm;
     }
 
     private Map<Integer, String> noname = new HashMap<Integer, String>();
     private Vector<Pokemon> allPokemon = new Vector<>();
+    public static List<Superior> superiorList;
 
     public void initPokemon() {
         String[][] names = {

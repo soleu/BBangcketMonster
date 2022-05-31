@@ -1,11 +1,11 @@
 package bbangkeMonster.stage;
 
-import bbangkeMonster.Guild;
-import bbangkeMonster.User;
+import bbangkeMonster.GuildManager;
+import bbangkeMonster.entity.User;
 
 public class InventoryStage implements Stage {
     User user = User.getuser();
-    Guild guild = Guild.getInstance();
+    GuildManager guild = GuildManager.getInstance();
 
     @Override
     public void init() {

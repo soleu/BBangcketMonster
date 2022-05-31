@@ -1,6 +1,6 @@
 package bbangkeMonster;
 
-import bbangkeMonster.data.PockemonSetting;
+import bbangkeMonster.data.PokemonSetting;
 import bbangkeMonster.entity.Pokemon;
 
 import java.util.HashMap;
@@ -9,17 +9,17 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class Guild {
-    private Guild() {
+public class GuildManager {
+    private GuildManager() {
     }
 
-    private static Guild guild = new Guild();
+    private static GuildManager guild = new GuildManager();
 
-    public static Guild getInstance() {
+    public static GuildManager getInstance() {
         return guild;
     }
 
-    PockemonSetting cm = PockemonSetting.getCm();
+    PokemonSetting cm = PokemonSetting.getCm();
 
     Map<String, Integer> nameno = new HashMap<String, Integer>();
     private Vector<Pokemon> guildMember = new Vector<>();
@@ -34,6 +34,7 @@ public class Guild {
     // 처음 길드 멤버 초기화 (길드 및 파티는 순서대로 4명)
     public void initMember() {
         cm.initPokemon();
+        cm.initSuperior();
         Vector<Pokemon> allPokemon = cm.getAllPokemon();
         for (int i = 0; i < 4; i++) {
             Pokemon pokemon = allPokemon.get(i);

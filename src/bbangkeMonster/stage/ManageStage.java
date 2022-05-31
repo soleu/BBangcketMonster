@@ -3,11 +3,11 @@
 package bbangkeMonster.stage;
 
 import bbangkeMonster.GameManager;
-import bbangcketMonster.Guild;
+import bbangkeMonster.GuildManager;
 
 public class ManageStage implements Stage {
     GameManager gm = GameManager.getInstance();
-    Guild guild = Guild.getInstance();
+    GuildManager guild = GuildManager.getInstance();
 
     @Override
     public void init() {
