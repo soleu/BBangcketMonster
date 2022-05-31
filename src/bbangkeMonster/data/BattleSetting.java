@@ -1,10 +1,10 @@
-package bbangcketMonster.data;
+package bbangkeMonster.data;
 
-import bbangcketMonster.Guild;
-import bbangcketMonster.entity.PlantNpcUnit;
-import bbangcketMonster.entity.TigerNpcUnit;
-import bbangcketMonster.entity.FishNpcUnit;
-import bbangcketMonster.entity.NpcUnit;
+import bbangkeMonster.Guild;
+import bbangkeMonster.entity.PlantNpcUnit;
+import bbangkeMonster.entity.TigerNpcUnit;
+import bbangkeMonster.entity.FishNpcUnit;
+import bbangkeMonster.entity.NpcUnit;
 
 import java.util.HashMap;
 import java.util.Map;

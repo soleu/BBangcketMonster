@@ -1,7 +1,7 @@
-package bbangcketMonster.stage;
+package bbangkeMonster.stage;
 
-import bbangcketMonster.Guild;
-import bbangcketMonster.User;
+import bbangkeMonster.Guild;
+import bbangkeMonster.User;
 
 public class InventoryStage implements Stage {
     User user = User.getuser();

@@ -1,7 +1,7 @@
-package bbangcketMonster.stage;
+package bbangkeMonster.stage;
 
 
-import bbangcketMonster.GameManager;
+import bbangkeMonster.GameManager;
 
 public class LobbyStage implements Stage {
     final GameManager gm = GameManager.getInstance();

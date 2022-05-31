@@ -1,6 +1,6 @@
-package bbangcketMonster.entity;
+package bbangkeMonster.entity;
 
-import bbangcketMonster.PokemonType;
+import bbangkeMonster.PokemonType;
 
 public class Pokemon {
     private String name = "";

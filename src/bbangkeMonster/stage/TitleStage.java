@@ -1,6 +1,6 @@
-package bbangcketMonster.stage;
+package bbangkeMonster.stage;
 
-import bbangcketMonster.GameManager;
+import bbangkeMonster.GameManager;
 
 public class TitleStage implements Stage {
 

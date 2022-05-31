@@ -1,7 +1,7 @@
-package bbangcketMonster;
+package bbangkeMonster;
 
-import bbangcketMonster.data.PockemonSetting;
-import bbangcketMonster.entity.Pokemon;
+import bbangkeMonster.data.PockemonSetting;
+import bbangkeMonster.entity.Pokemon;
 
 import java.util.HashMap;
 import java.util.Map;

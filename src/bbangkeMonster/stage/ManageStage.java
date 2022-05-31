@@ -1,8 +1,8 @@
 
 
-package bbangcketMonster.stage;
+package bbangkeMonster.stage;
 
-import bbangcketMonster.GameManager;
+import bbangkeMonster.GameManager;
 import bbangcketMonster.Guild;
 
 public class ManageStage implements Stage {

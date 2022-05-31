@@ -1,4 +1,4 @@
-package bbangcketMonster.stage;
+package bbangkeMonster.stage;
 public interface Stage {
 	public void init();
 

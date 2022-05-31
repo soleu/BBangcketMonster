@@ -1,14 +1,14 @@
-package bbangcketMonster.stage;
+package bbangkeMonster.stage;
 
-import bbangcketMonster.data.BattleSetting;
-import bbangcketMonster.entity.Pokemon;
-import bbangcketMonster.GameManager;
-import bbangcketMonster.Guild;
-import bbangcketMonster.entity.NpcUnit;
+import bbangkeMonster.data.BattleSetting;
+import bbangkeMonster.entity.Pokemon;
+import bbangkeMonster.GameManager;
+import bbangkeMonster.Guild;
+import bbangkeMonster.entity.NpcUnit;
 
 import java.util.Scanner;
 
-import static bbangcketMonster.data.BattleSetting.currentNpcList;
+import static bbangkeMonster.data.BattleSetting.currentNpcList;
 
 public class BattleStage implements Stage {
     final GameManager gm = GameManager.getInstance();
