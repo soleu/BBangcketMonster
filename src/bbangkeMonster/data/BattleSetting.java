@@ -22,12 +22,18 @@ public class BattleSetting {
     }
 
     public void initBattle() {
-        System.out.println("====[포켓몬 빵 사러 편의점 가는 길]====");
-        System.out.println("...");
-        System.out.println("...");
-        randomLine();
-        initNpc();
-        System.out.println("전투를 시작합니다.\n");
+        try {
+            System.out.println("====[포켓몬 빵 사러 편의점 가는 길]====");
+            System.out.println("...");
+            System.out.println("...");
+            Thread.sleep(1000);
+            randomLine();
+            initNpc();
+            System.out.println("전투를 시작합니다.\n");
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void randomLine() {

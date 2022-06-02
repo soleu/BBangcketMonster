@@ -30,10 +30,10 @@ public class NpcService {
             Superior superiorInfo = superiorList.get(i);
             if (myType == superiorInfo.getType()) {
                 for (int j = 0; j < superiorInfo.getStrong().size(); j++) {
-                    if (rivalType == superiorInfo.getStrong().get(j)) superior = "rival";
+                    if (rivalType == superiorInfo.getStrong().get(j)) superior = "user";
                 }
                 for (int j = 0; j < superiorInfo.getWeak().size(); j++) {
-                    if (rivalType == superiorInfo.getWeak().get(j)) superior = "user";
+                    if (rivalType == superiorInfo.getWeak().get(j)) superior = "rival";
                 }
             }
         }

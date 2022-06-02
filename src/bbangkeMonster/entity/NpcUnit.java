@@ -64,7 +64,7 @@ public abstract class NpcUnit {
     }
 
     public void printUnit() {
-        System.out.println("[" + name + "] HP : " + HP + "/" + Max_HP + " ACK : " + ACK + " DEF: " + DEF);
+        System.out.println("[" + name + "] HP :" + HP + "/" + Max_HP + " type [" + type.name() + "]");
     }
 
     public void checkDead() {

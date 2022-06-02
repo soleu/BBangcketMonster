@@ -68,8 +68,6 @@ public class GuildManager {
     // 길드원 추가 : 기존 캐릭터 매니저에서 랜덤으로 한 명 추가(없는 캐릭터 중에서)
     public void addMember() {
         System.out.println("=== [포켓몬 뽑기] ===");
-        System.out.println("[알림] 포켓몬 뽑기는 1000골드가 소모됩니다.");
-        // userMoney>=1000
 
         boolean run = true;
         while (run) {
@@ -98,7 +96,6 @@ public class GuildManager {
     // 길드원 삭제 : 현재 길드에서 선택 삭제(레벨당 골드 지급)
     public void deleteMember() {
         System.out.println("=== [포켓몬 퇴출] ===");
-        System.out.println("레벨 1 :500골드, 레벨 2 : 700골드, 레벨 3 이상 : 900골드 지급");
         int num = 0;
         memberList();
         System.out.println("삭제할 포켓몬을 선택하세요 : ");
@@ -108,19 +105,8 @@ public class GuildManager {
             System.out.println("현재 소지중인 포켓몬은 삭제할 수 없습니다.");
             return;
         }
-
-        int lev = guildMember.get(num).getLevel();
-        if (lev == 1) {
-            // userMoney+=500;
-        } else if (lev == 2) {
-            // userMoney+=700;
-        } else {
-            // userMoney+=900;
-        }
         guildMember.remove(num);
         System.out.println("[알림] 해당 포켓몬이 삭제되었습니다.");
-        // 소지금액
-        // 소지 아이템 먼저 버리기
     }
 
     // 파티원 선정(최대 4명)
@@ -131,13 +117,13 @@ public class GuildManager {
             System.out.println("=== [소지 포켓몬 교체] ===");
             memberList();
             System.out.println("휴식을 취할 캐릭터를 선정해주세요 : ");
-            num1 = scan.nextInt();
+            num1 = scan.nextInt() - 1;
             if (guildMember.get(num1).isInParty() == false) {
                 System.out.println("해당 포켓몬은 이미 휴식중입니다.");
                 continue;
             }
             System.out.println("소지할 포켓몬을 선정해주세요 : ");
-            num2 = scan.nextInt();
+            num2 = scan.nextInt() - 1;
             if (guildMember.get(num2).isInParty() == true) {
                 System.out.println("해당 포켓몬을 이미 소지하고 있습니다.");
                 continue;

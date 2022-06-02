@@ -9,15 +9,19 @@ public class ManageStage implements Stage {
 
     @Override
     public void init() {
+    }
+
+    public void showMenu() {
         System.out.println("====[포켓몬 관리]====");
         System.out.println("[1] 포켓몬 확인\t [2] 포켓몬 뽑기\t[3] 포켓몬 퇴출\t");
         System.out.println("[4] 소지한 포켓몬 교체\t [5] 포켓몬 정렬\t [6] 뒤로가기\t");
+
     }
 
     @Override
     public boolean update() {
         while (true) {
-            init();
+            showMenu();
             int choice = gm.scan.nextInt();
             if (choice == 1) {
                 guild.memberList();
@@ -33,6 +37,7 @@ public class ManageStage implements Stage {
                 break;
             }
         }
+        gm.nextStageName = "LOBBY";
         return true;
     }
 }

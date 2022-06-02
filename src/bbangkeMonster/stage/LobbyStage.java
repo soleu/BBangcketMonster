@@ -9,7 +9,7 @@ public class LobbyStage implements Stage {
     @Override
     public void init() {
         System.out.println("====[메인]====");
-        System.out.println("[1]포켓몬 빵 사러가기 [2] 포켓몬 관리 [3] 인벤토리 확인 [4] 끝내기 ");
+        System.out.println("[1]포켓몬 빵 사러가기 [2] 포켓몬 관리 [3] 내 스티커 보기 [4] 끝내기 ");
     }
 
     @Override

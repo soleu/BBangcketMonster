@@ -1,7 +1,5 @@
 package bbangkeMonster.entity;
 
-//인벤토리, 골드 담당
-
 public class User {
     private User() {
     }

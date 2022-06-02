@@ -1,5 +1,6 @@
 package bbangkeMonster.stage;
 
+import bbangkeMonster.GameManager;
 import bbangkeMonster.data.StickerSetting;
 import bbangkeMonster.entity.Sticker;
 import bbangkeMonster.entity.User;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class InventoryStage implements Stage {
     User user = User.getUser();
     StickerSetting stickerSetting = new StickerSetting();
+    GameManager gm = GameManager.getInstance();
 
     @Override
     public void init() {
@@ -22,11 +24,10 @@ public class InventoryStage implements Stage {
         int[] userSticker = user.getStickers();
         ArrayList<Sticker> stickers = stickerSetting.stickers;
         Scanner sc = new Scanner(System.in);
-        System.out.println(userSticker.length);
         for (int i = 0; i < stickers.size(); i++) {
             Sticker sticker = stickers.get(i);
             if (userSticker[i] != 0) {
-                System.out.println("no." + sticker.getNo() + " name: " + sticker.getName() + " " + userSticker[i] + "개");
+                System.out.println("no." + sticker.getNo() + " name: " + sticker.getName() + " " + userSticker[i] + "장");
             } else {
                 System.out.println("no." + sticker.getNo() + " name: ???");
             }
@@ -40,6 +41,7 @@ public class InventoryStage implements Stage {
                 stickers.get(num - 1).printImage();
             }
         }
+        gm.nextStageName = "LOBBY";
         return true;
     }
 }

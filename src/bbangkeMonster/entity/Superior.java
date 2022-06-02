@@ -24,9 +24,4 @@ public class Superior {
     public List<PokemonType> getWeak() {
         return weak;
     }
-    //    public void computeSuperior(PokemonType myType, PokemonType rivalType){
-//        for (int i = 0; i < type; i++) {
-//
-//        }
-//    }
 }

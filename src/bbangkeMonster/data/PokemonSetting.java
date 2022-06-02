@@ -26,13 +26,12 @@ public class PokemonSetting {
     private Map<Integer, String> noname = new HashMap<Integer, String>();
     public static Vector<Pokemon> allPokemon = new Vector<>();
     public static List<Superior> superiorList = new ArrayList<>();
+    public static String[][] names = {
+            {"피츄", "이상해씨", "파이리", "구구", "모다피", "꼬부기", "캐터피", "고오스", "야돈", "캐이시"},
+            {"피카츄", "이상해풀", "리자드", "피죤", "우츠동", "어니부기", "단데기", "고우스트", "야도란", "윤겔라"},
+            {"라이츄", "이상해꽃", "리자몽", "피죤투", "우츠보트", "거북왕", "버터풀", "팬텀", "야도킹", "후딘"}};
 
     public void initPokemon() {
-        String[][] names = {
-                {"피츄", "이상해씨", "파이리", "구구", "모다피", "꼬부기", "캐터피", "고오스", "야돈", "캐이시"},
-                {"피카츄", "이상해풀", "리자드", "피죤", "우츠동", "어니부기", "단데기", "고우스트", "야도란", "윤겔라"},
-                {"라이츄", "이상해꽃", "리자몽", "피죤투", "우츠보트", "거북왕", "버터풀", "팬텀", "야도킹", "후딘"}};
-
         PokemonType[] type = {PokemonType.ELECTR, PokemonType.GRASS, PokemonType.FIRE, PokemonType.FLYING, PokemonType.GRASS, PokemonType.WATER, PokemonType.BUG,
                 PokemonType.GHOST, PokemonType.PSYCHC, PokemonType.PSYCHC};
 
@@ -40,7 +39,7 @@ public class PokemonSetting {
         ArrayList<Skill>[] skillList = initSkillList();
         int[] DEF = {30, 35, 25, 20, 36, 56, 36, 27, 58, 60};
         for (int i = 0; i < 10; i++) {
-            allPokemon.add(new Pokemon(names[0][i], HP[i], skillList[i], DEF[i], type[i]));
+            allPokemon.add(new Pokemon(i, names[0][i], HP[i], skillList[i], DEF[i], type[i]));
             noname.put(i, names[0][i]);
         }
     }

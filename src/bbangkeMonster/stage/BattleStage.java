@@ -38,74 +38,78 @@ public class BattleStage implements Stage {
 
     @Override
     public boolean update() {
-        boolean turn = false;
-        while (true) {
-            if (checkIfDeadMon()) {
-                System.out.println("승리! 결투에서 이겼습니다.");
-                System.out.println("포켓몬 빵과 경험치를 얻었습니다.");
-                for (Pokemon pokemon : guild.getPartyMember()) {
-                    pokemonService.earnExp(pokemon);
-                }
-                openBread();
-                gm.nextStageName = "LOBBY";
-                return true;
-            }
-            if (checkIfDeadPokemon()) {
-                System.out.println("패배! 소지한 포켓몬이 모두 기절하였습니다. 집으로 돌아갑니다.");
-                for (Pokemon pokemon : guild.getPartyMember()) {
-                    pokemonService.earnExp(pokemon); //rebirth
-                }
-                gm.nextStageName = "LOBBY";
-                return true;
-            }
-            MonsterState();
-            playerState();
+        try {
+            boolean turn = false;
+            boolean run = true;
+            while (run) {
+                Thread.sleep(1000);
 
-            if (!turn) {
-                Vector<Pokemon> pokemons = guild.getPartyMember();
-                for (int i = 0; i < pokemons.size(); i++) {
-                    Pokemon pokemon = pokemons.get(i);
-                    if (pokemon.isDead() == true)
-                        continue;
-                    System.out.println("\n" + pokemon.getName() + "의 턴");
-                    //공격 몬스터 선택
-                    System.out.println("공격할 몬스터 선택 : ");
-                    for (int j = 0; j < currentNpcList.size(); j++) {
-                        if (!currentNpcList.get(j).isDead()) {
-                            System.out.println("[" + (j + 1) + "] " + currentNpcList.get(j).getName()
-                                    + "[" + currentNpcList.get(j).getHP() + "/" + currentNpcList.get(j).getMax_HP() + "]");
-                        } else {
-                            System.out.println("[" + (j + 1) + "] " + currentNpcList.get(j).getName()
-                                    + "[기절함]");
+                MonsterState();
+                playerState();
+
+                if (!turn) {
+                    Vector<Pokemon> pokemons = guild.getPartyMember();
+                    for (int i = 0; i < pokemons.size(); i++) {
+                        Pokemon pokemon = pokemons.get(i);
+                        if (pokemon.isDead() == true)
+                            continue;
+                        Thread.sleep(500);
+                        System.out.println("\n" + pokemon.getName() + "의 턴");
+                        //공격 몬스터 선택
+                        System.out.println("공격할 몬스터 선택 : ");
+                        for (int j = 0; j < currentNpcList.size(); j++) {
+                            if (!currentNpcList.get(j).isDead()) {
+                                System.out.println("[" + (j + 1) + "] " + currentNpcList.get(j).getName()
+                                        + "[" + currentNpcList.get(j).getHP() + "/" + currentNpcList.get(j).getMax_HP() + "]");
+                            } else {
+                                System.out.println("[" + (j + 1) + "] " + currentNpcList.get(j).getName()
+                                        + "[기절함]");
+                            }
+                        }
+                        int target = scan.nextInt() - 1;
+                        System.out.println("공격 선택 :");
+                        pokemonService.showSkills(pokemon);
+                        int choice = scan.nextInt();
+                        pokemonService.attack(pokemon, currentNpcList.get(target), choice);
+                        if (checkIfDeadMon()) {
+                            win();
+                            Thread.sleep(1000);
+                            run = false;
+                            break;
                         }
                     }
-                    int target = scan.nextInt() - 1;
-                    System.out.println("공격 선택 :");
-                    pokemonService.showSkills(pokemon);
-                    int choice = scan.nextInt();
-                    pokemonService.attack(pokemon, currentNpcList.get(target), choice);
-                }
-                turn = true;
-            } else {
-                System.out.println("[상대방 턴]");
-                for (int i = 0; i < currentNpcList.size(); i++) {
-                    NpcUnit npcUnit = currentNpcList.get(i);
-                    if (npcUnit.isDead() == true)
-                        continue;
-                    int j = 0;
-                    for (; j < guild.getGuildMember().size(); j++) {
-                        if (guild.getGuildMember().get(j).getHP() != 0)
+                    turn = true;
+                } else {
+                    System.out.println("[상대방 턴]");
+                    for (int i = 0; i < currentNpcList.size(); i++) {
+                        NpcUnit npcUnit = currentNpcList.get(i);
+                        if (npcUnit.isDead() == true)
+                            continue;
+                        Thread.sleep(500);
+                        int j = 0;
+                        for (; j < guild.getGuildMember().size(); j++) {
+                            if (guild.getGuildMember().get(j).getHP() != 0)
+                                break;
+                        }
+                        npcService.attack(npcUnit, guild.getGuildMember().get(j));
+                        if (checkIfDeadPokemon()) {
+                            lose();
+                            Thread.sleep(1000);
+                            run = false;
                             break;
+                        }
                     }
-                    npcService.attack(npcUnit, guild.getGuildMember().get(j));
+                    turn = false;
                 }
-                turn = false;
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        gm.nextStageName = "LOBBY";
+        return true;
     }
 
-    void playerState() {
+    private void playerState() {
         System.out.println("====[플레이어]====");
         for (int i = 0; i < guild.getGuildMember().size(); i++) {
             guild.getGuildMember().get(i).printCharaInfo();
@@ -113,7 +117,7 @@ public class BattleStage implements Stage {
         System.out.println();
     }
 
-    void MonsterState() {
+    private void MonsterState() {
         System.out.println("====[상대방]====");
         for (int i = 0; i < currentNpcList.size(); i++) {
             currentNpcList.get(i).printUnit();
@@ -121,10 +125,10 @@ public class BattleStage implements Stage {
         System.out.println();
     }
 
-    boolean checkIfDeadMon() {
+    private boolean checkIfDeadMon() {
+        npcDead = 0;
         for (int i = 0; i < currentNpcList.size(); i++) {
-            if (currentNpcList.get(i).isDead() == true)
-                npcDead++;
+            if (currentNpcList.get(i).isDead()) npcDead++;
         }
         if (npcDead == currentNpcList.size()) {
             return true;
@@ -132,7 +136,8 @@ public class BattleStage implements Stage {
         return false;
     }
 
-    boolean checkIfDeadPokemon() {
+    private boolean checkIfDeadPokemon() {
+        playerDead = 0;
         for (int i = 0; i < guild.getGuildMember().size(); i++) {
             if (guild.getGuildMember().get(i).isDead() == true)
                 playerDead++;
@@ -143,7 +148,7 @@ public class BattleStage implements Stage {
         return false;
     }
 
-    public void openBread() {
+    private void openBread() {
         Random random = new Random();
 
         System.out.println("포켓몬 빵을 얻었습니다!");
@@ -156,5 +161,21 @@ public class BattleStage implements Stage {
         System.out.println(sticker.getName() + "스티커를 얻었습니다!");
         System.out.println("인벤토리에서 이미지를 확인할 수 있습니다.");
         user.earnSticker(sticker);
+    }
+
+    private void win() {
+        System.out.println("승리! 결투에서 이겼습니다.");
+        System.out.println("포켓몬 빵과 경험치를 얻었습니다.");
+        for (Pokemon pokemon : guild.getPartyMember()) {
+            pokemonService.earnExp(pokemon);
+        }
+        openBread();
+    }
+
+    private void lose() {
+        System.out.println("패배! 소지한 포켓몬이 모두 기절하였습니다. 집으로 돌아갑니다.");
+        for (Pokemon pokemon : guild.getPartyMember()) {
+            pokemonService.earnExp(pokemon); //rebirth
+        }
     }
 }

@@ -1,8 +1,12 @@
 package bbangkeMonster.entity;
 
 import java.util.ArrayList;
+import java.util.Random;
+
+import static bbangkeMonster.data.PokemonSetting.names;
 
 public class Pokemon {
+    private int no;
     private String name = "";
     private int HP;
     private int Max_HP;
@@ -17,7 +21,8 @@ public class Pokemon {
     public Pokemon() {
     }
 
-    public Pokemon(String name, int HP, ArrayList<Skill> skills, int DEF, PokemonType type) {
+    public Pokemon(int no, String name, int HP, ArrayList<Skill> skills, int DEF, PokemonType type) {
+        this.no = no;
         this.name = name;
         this.HP = HP;
         this.Max_HP = HP;
@@ -36,11 +41,26 @@ public class Pokemon {
     }
 
     public void earnExpPoint() {
-        this.exp += 30 / (level * 0.9); //레벨마다 차등효과
+        Random rand = new Random();
+        int num = rand.nextInt(3) + 1;//1~3
+        this.exp += 50 / (level * 0.9 * num); //레벨마다 차등효과, 랜덤
+        if (exp > 100) levelUp();
+    }
+
+    public void levelUp() {
+        System.out.println(name + "의 상태가 이상하다...");
+        if (level < 3) {
+            name = names[level][no];
+            System.out.println(name + "(으)로 " + "진화합니다.");
+        }
+        level++;
+        exp = 0;
+        System.out.println(name + "(이)가 새로운 스킬을 배웠습니다.");
     }
 
     public void rebirth() {
         this.HP = Max_HP;
+        this.isDead = false;
     }
 
     public void setInParty() {
