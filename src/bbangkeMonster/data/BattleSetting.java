@@ -45,7 +45,7 @@ public class BattleSetting {
     public void initNpc() {
         currentNpcList = new Vector<>();// 시작전 초기화
         int rNum = random.nextInt(4) + 1;// 1~4
-        for (int i = 0; i < rNum; i++) {
+        for (int i = 0; i < 2; i++) {
             int rNum2 = random.nextInt(3);
             if (rNum2 == 1) currentNpcList.add(new TigerNpcUnit());
             else if (rNum2 == 2) currentNpcList.add(new FishNpcUnit());

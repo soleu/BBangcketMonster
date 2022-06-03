@@ -144,7 +144,7 @@ public class GuildManager {
     public void arrayMember() {
         System.out.println("=== [포켓몬 정렬] ===");
         System.out.println("지정된 순서대로 정렬합니다.");
-        for (int i = 0; i < cm.getAllPokemon().size(); i++) {
+        for (int i = 0; i < guildMember.size(); i++) {
             String name = cm.getNoname().get(i);
             for (int j = 0; j < guildMember.size(); j++) {
                 if (name.equals(guildMember.get(j).getName())) {

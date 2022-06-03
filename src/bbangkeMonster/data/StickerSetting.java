@@ -8,7 +8,8 @@ public class StickerSetting {
     public static ArrayList<Sticker> stickers = new ArrayList<>();
 
     public StickerSetting() {
-        String[] names = {"뮤", "피카츄", "꼬부기", "야돈", "단데기"};
+        String[] names = {"뮤", "피카츄", "꼬부기", "야돈", "디그다" +
+                ""};
         String[] images = new String[10];
         images[0] = "\n" +
                 "──────────────░░░───────────────────────\n" +
